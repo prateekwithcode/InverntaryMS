@@ -8,7 +8,7 @@ function Dashboard() {
     name: "",
     itemId: "",
     quantity: "",
-    price: ""
+    price: "",
   });
   const [search, setSearch] = useState("");
   const [editId, setEditId] = useState(null);
@@ -24,7 +24,7 @@ function Dashboard() {
   const fetchItems = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/items?search=${search}`
+        `http://localhost:5000/api/items?search=${search}`,
       );
       setItems(res.data);
     } catch {
@@ -46,7 +46,7 @@ function Dashboard() {
       await axios.post("http://localhost:5000/api/items", {
         ...form,
         quantity: Number(form.quantity),
-        price: Number(form.price)
+        price: Number(form.price),
       });
 
       setForm({ name: "", itemId: "", quantity: "", price: "" });
@@ -58,14 +58,11 @@ function Dashboard() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(
-        `http://localhost:5000/api/items/${editId}`,
-        {
-          ...form,
-          quantity: Number(form.quantity),
-          price: Number(form.price)
-        }
-      );
+      await axios.put(`http://localhost:5000/api/items/${editId}`, {
+        ...form,
+        quantity: Number(form.quantity),
+        price: Number(form.price),
+      });
 
       setEditId(null);
       setForm({ name: "", itemId: "", quantity: "", price: "" });
@@ -93,7 +90,6 @@ function Dashboard() {
 
   return (
     <div style={{ background: "#f4f6f9", minHeight: "100vh" }}>
-      
       {/* Top Navbar */}
       <div
         className="d-flex justify-content-between align-items-center px-4 py-3 shadow-sm"
@@ -106,7 +102,6 @@ function Dashboard() {
       </div>
 
       <div className="container py-4">
-
         {/* Form Card */}
         <div className="card border-0 shadow-sm p-4 mb-4">
           <h5 className="fw-semibold mb-3">
@@ -119,9 +114,7 @@ function Dashboard() {
                 className="form-control"
                 placeholder="Item Name"
                 value={form.name}
-                onChange={(e) =>
-                  setForm({ ...form, name: e.target.value })
-                }
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
               />
             </div>
 
@@ -130,9 +123,7 @@ function Dashboard() {
                 className="form-control"
                 placeholder="Item ID"
                 value={form.itemId}
-                onChange={(e) =>
-                  setForm({ ...form, itemId: e.target.value })
-                }
+                onChange={(e) => setForm({ ...form, itemId: e.target.value })}
               />
             </div>
 
@@ -142,9 +133,7 @@ function Dashboard() {
                 className="form-control"
                 placeholder="Quantity"
                 value={form.quantity}
-                onChange={(e) =>
-                  setForm({ ...form, quantity: e.target.value })
-                }
+                onChange={(e) => setForm({ ...form, quantity: e.target.value })}
               />
             </div>
 
@@ -154,9 +143,7 @@ function Dashboard() {
                 className="form-control"
                 placeholder="Price"
                 value={form.price}
-                onChange={(e) =>
-                  setForm({ ...form, price: e.target.value })
-                }
+                onChange={(e) => setForm({ ...form, price: e.target.value })}
               />
             </div>
 
@@ -169,10 +156,7 @@ function Dashboard() {
                   Update Item
                 </button>
               ) : (
-                <button
-                  className="btn btn-primary w-100"
-                  onClick={handleAdd}
-                >
+                <button className="btn btn-primary w-100" onClick={handleAdd}>
                   Add Item
                 </button>
               )}
@@ -213,9 +197,7 @@ function Dashboard() {
                     <td>
                       <span
                         className={`fw-semibold ${
-                          item.quantity < 10
-                            ? "text-danger"
-                            : "text-success"
+                          item.quantity < 10 ? "text-danger" : "text-success"
                         }`}
                       >
                         {item.quantity}
@@ -233,7 +215,7 @@ function Dashboard() {
                             name: item.name,
                             itemId: item.itemId,
                             quantity: item.quantity,
-                            price: item.price
+                            price: item.price,
                           });
                           setEditId(item._id);
                         }}
@@ -262,7 +244,6 @@ function Dashboard() {
             </table>
           </div>
         </div>
-
       </div>
     </div>
   );
