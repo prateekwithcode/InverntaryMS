@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Item = require("../models/Item");
 
-//  GET ALL ITEMS + SEARCH
+//  GET ALL ITEMS & SEARCH
 router.get("/", async (req, res) => {
   try {
     const search = req.query.search || "";

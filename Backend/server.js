@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-//  Login Route (Hardcoded)
+//  Login Route
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
 
